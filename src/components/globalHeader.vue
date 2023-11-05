@@ -1,5 +1,5 @@
 <template>
-  <a-row class="globalHeader" style="margin-bottom: 16px;" align="center">
+  <a-row class="globalHeader" style="margin-bottom: 16px;" align="center" :wrap="false">
     <a-col flex="200px">
       <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }" disabled>
         <div
@@ -18,13 +18,13 @@
     </a-col>
     <a-col flex="auto">
       <router-link
-        v-for="route in routes" :key="route.path" :to="route.path" class="nav-link"
+        v-for="route in visibleRoutes" :key="route.path" :to="route.path" class="nav-link"
         active-class="active">
         {{ route.name }}
       </router-link>
     </a-col>
     <a-col flex="100px">
-      <div>jarvis</div>
+      <div>{{ store.state.user?.loginUser?.userName ?? '未登录' }}</div>
     </a-col>
   </a-row>
 
@@ -33,7 +33,7 @@
 .globalHeader {
   box-sizing: border-box;
   width: 100%;
-  padding: 40px;
+  padding: 50px;
   background-color: var(--color-neutral-2);
 }
 
@@ -64,6 +64,21 @@
 
 <script>
 import routes from '@/router/route';
+import { mapState } from 'vuex';
+import checkAccess from '@/access/checkAccess';
+import store from '@/store';
+import { computed } from 'vue';
+
+// const visibleRoutes = computed(() => routes.filter((item, index) => {
+//   if (item.meta?.hideInView) {
+//     return false;
+//   }
+//   // 根据用户权限过滤菜单
+//   if (!checkAccess(store.state.user.loginUser, item?.meta?.access)) {
+//     return false;
+//   }
+//   return true;
+// }));
 
 export default {
   name: 'globalHeader',
@@ -71,6 +86,24 @@ export default {
     return {
       routes,
     };
+  },
+  computed: {
+    store() {
+      return store;
+    },
+    visibleRoutes() {
+      return routes.filter((item) => {
+        const { loginUser } = this.$store.state.user;
+        if (item.meta?.hideInMenu) {
+          return false;
+        }
+        // 根据用户权限过滤菜单
+        if (!checkAccess(loginUser, item?.meta?.access)) {
+          return false;
+        }
+        return true;
+      });
+    },
   },
 };
 </script>

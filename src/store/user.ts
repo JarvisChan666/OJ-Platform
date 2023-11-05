@@ -5,18 +5,17 @@ export default {
   // initial state of user
   state: {
     loginUser: {
-      userName: 'unLogin',
-      role: 'visitor',
+      userName: 'jarvis',
+      userRole: 'admin',
     },
   },
-  getters: {
-  },
+  getters: {},
   actions: {
     getLoginUser({
       commit,
       state,
     }, payload) {
-      commit('updateUser', { userName: 'jarvis' });
+      commit('updateUser', payload);
     },
   },
   mutations: {
@@ -24,4 +23,4 @@ export default {
       state.loginUser = payload;
     },
   },
-}as StoreOptions<any>;
+} as StoreOptions<any>;
