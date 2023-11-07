@@ -17,10 +17,12 @@
 </template>
 
 <style>
+.header {
+  height: 300px;
+}
+
 .content {
-  background: linear-gradient(to right, #ff87a0, #000000);
-  padding: 20px;
-  color: white;
+//padding: 20px; //color: white;
 }
 
 .footer {

@@ -1,5 +1,5 @@
 <template>
-  <a-row class="globalHeader" style="margin-bottom: 16px;" align="center" :wrap="false">
+  <a-row :wrap="false" align="center" class="globalHeader" style="margin-bottom: 16px">
     <a-col flex="200px">
       <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }" disabled>
         <div
@@ -12,29 +12,32 @@
             borderRadius: '50%',
           }"
         >
-          <img src="../assets/logo.jpg" alt="logo" class="logo">
+          <img alt="logo" class="logo" src="../assets/logo.jpg" />
         </div>
       </a-menu-item>
     </a-col>
     <a-col flex="auto">
       <router-link
-        v-for="route in visibleRoutes" :key="route.path" :to="route.path" class="nav-link"
-        active-class="active">
+        v-for="route in visibleRoutes"
+        :key="route.path"
+        :to="route.path"
+        active-class="active"
+        class="nav-link"
+      >
         {{ route.name }}
       </router-link>
     </a-col>
-    <a-col flex="100px">
-      <div>{{ store.state.user?.loginUser?.userName ?? '未登录' }}</div>
+    <a-col class="userName" flex="100px">
+      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
     </a-col>
   </a-row>
-
 </template>
 <style scoped>
 .globalHeader {
   box-sizing: border-box;
   width: 100%;
   padding: 50px;
-  background-color: var(--color-neutral-2);
+  background: linear-gradient(to right, #ff87a0, #361d22);
 }
 
 .logo {
@@ -55,6 +58,10 @@
 
 .nav-link:hover {
   color: #ff5500;
+}
+
+.userName {
+  color: yellow;
 }
 
 .active {

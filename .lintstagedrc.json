@@ -1,0 +1,12 @@
+{
+  "./**/*. json.less": [
+    "prettier --write"
+  ],
+  "./**/*. js": [
+    "prettier --write"
+  ],
+  "./**/*. {ts, tsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ]
+}
