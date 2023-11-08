@@ -1,0 +1,19 @@
+#.github/workflows/ci.yaml
+
+name: CI
+on: [push]
+jobs:
+  CI:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: action/checkout@v3
+      - name: Install Packages
+        run: npm install
+      - name: Check Lint
+        run: npx eslint
+      - name: Check Code Format
+        run: npx prettier --check ./
+      - name: Check Simple Build
+      #对项目直接编译，做一次简单打包操作，防止出现项目格式没问题但是打包出现问题
+        run: npm run build
