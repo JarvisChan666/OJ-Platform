@@ -71,10 +71,6 @@ const router = useRouter();
 
 const store = useStore();
 
-/**
- * 提交表单
- * @param data
- */
 const handleSubmit = async () => {
   if (!form.userAccount || !form.userPassword || !form.checkPassword) {
     return;
@@ -83,8 +79,9 @@ const handleSubmit = async () => {
     return;
   }
   if (
-    form.checkPassword.length !== form.userPassword.length
-    || form.checkPassword !== form.userPassword
+    /* eslint-disable */
+    form.checkPassword.length !== form.userPassword.length ||
+    form.checkPassword !== form.userPassword
   ) {
     message.error('两次输入密码不一致');
     return;

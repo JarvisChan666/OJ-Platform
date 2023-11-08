@@ -1,7 +1,9 @@
 generated
 .github
+public
 
 babel.config.js
 .eslintrc.js
+src/shims-vue.d.ts
 
 **/*.json
