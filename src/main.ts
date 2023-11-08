@@ -8,5 +8,8 @@ import router from './router';
 import store from './store';
 import '@/access';
 
-createApp(App).use(store).use(ArcoVue).use(router)
+createApp(App)
+  .use(store)
+  .use(ArcoVue)
+  .use(router)
   .mount('#app');

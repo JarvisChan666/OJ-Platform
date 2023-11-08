@@ -1,0 +1,7 @@
+generated
+.github
+
+babel.config.js
+.eslintrc.js
+
+**/*.json

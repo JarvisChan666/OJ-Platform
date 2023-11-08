@@ -6,8 +6,7 @@
           <img alt="Logo" class="logo" src="../assets/logo.jpg" />
         </global-header>
       </a-layout-header>
-      <a-layout-content class="content">
-      </a-layout-content>
+      <a-layout-content class="content"> </a-layout-content>
       <a-layout-footer class="footer">
         <a href="https://www.linkedin.com/in/jarvis-chan-098a9b24a/">
           Blackpink WorkStation by Jarvis
@@ -19,8 +18,7 @@
 
 <style scoped>
 #basicLayout {
-  background: url("@/assets/background.jpg")
-    0% 0% / 100% 100%;
+  background: url('@/assets/background.jpg') 0 / 100%;
 }
 
 .header {
