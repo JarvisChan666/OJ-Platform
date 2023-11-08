@@ -1,5 +1,5 @@
 <template>
   <div class="about">
-    <h1>unauth</h1>
+    <h1>noAuth</h1>
   </div>
 </template>

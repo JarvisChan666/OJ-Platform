@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "core-js": "^3.8.3",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
     "vue": "^3.2.13",
     "vue-router": "^4.0.3",
     "vuex": "^4.0.0"
@@ -28,6 +30,7 @@
     "@vue/cli-service": "~5.0.0",
     "@vue/eslint-config-airbnb": "^6.0.0",
     "@vue/eslint-config-typescript": "^9.1.0",
+    "axios": "^1.6.0",
     "cz-conventional-changelog": "^3.3.0",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.25.3",
@@ -36,6 +39,7 @@
     "glob": "^10.3.10",
     "husky": "^8.0.3",
     "lint-staged": "^15.0.2",
+    "openapi-typescript-codegen": "^0.25.0",
     "typescript": "~4.5.5"
   },
   "config": {

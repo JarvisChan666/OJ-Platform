@@ -1,12 +1,13 @@
 <template>
-  <div class="layout-demo">
-    <a-layout style="height: 400px;">
+  <div id="basicLayout">
+    <a-layout style="min-height: 100vh">
       <a-layout-header class="header">
         <global-header class="header-content">
-          <img src="../assets/logo.jpg" alt="Logo" class="logo">
+          <img alt="Logo" class="logo" src="../assets/logo.jpg" />
         </global-header>
       </a-layout-header>
-      <a-layout-content class="content">Content</a-layout-content>
+      <a-layout-content class="content">
+      </a-layout-content>
       <a-layout-footer class="footer">
         <a href="https://www.linkedin.com/in/jarvis-chan-098a9b24a/">
           Blackpink WorkStation by Jarvis
@@ -16,13 +17,18 @@
   </div>
 </template>
 
-<style>
+<style scoped>
+#basicLayout {
+  background: url("@/assets/background.jpg")
+    0% 0% / 100% 100%;
+}
+
 .header {
   height: 300px;
 }
 
 .content {
-//padding: 20px; //color: white;
+  //padding: 20px; //color: white;
 }
 
 .footer {
@@ -46,5 +52,4 @@ import { defineComponent } from 'vue';
 export default defineComponent({
   components: { globalHeader },
 });
-
 </script>

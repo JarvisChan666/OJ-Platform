@@ -28,7 +28,7 @@
       </router-link>
     </a-col>
     <a-col class="userName" flex="100px">
-      <div>{{ store.state.user?.loginUser?.userName ?? "未登录" }}</div>
+      <div>{{ store.state.user?.loginUser.userName ?? ACCESS_ENUM.NOT_LOGIN }}</div>
     </a-col>
   </a-row>
 </template>
@@ -37,7 +37,7 @@
   box-sizing: border-box;
   width: 100%;
   padding: 50px;
-  background: linear-gradient(to right, #ff87a0, #361d22);
+  background: linear-gradient(to right, #fedcdb, #fedada);
 }
 
 .logo {
@@ -61,7 +61,7 @@
 }
 
 .userName {
-  color: yellow;
+  color: black;
 }
 
 .active {
@@ -70,22 +70,10 @@
 </style>
 
 <script>
-import routes from '@/router/route';
-import { mapState } from 'vuex';
+import { routes } from '@/router/routes';
 import checkAccess from '@/access/checkAccess';
-import store from '@/store';
-import { computed } from 'vue';
-
-// const visibleRoutes = computed(() => routes.filter((item, index) => {
-//   if (item.meta?.hideInView) {
-//     return false;
-//   }
-//   // 根据用户权限过滤菜单
-//   if (!checkAccess(store.state.user.loginUser, item?.meta?.access)) {
-//     return false;
-//   }
-//   return true;
-// }));
+import { useStore } from 'vuex';
+import ACCESS_ENUM from '@/access/accessEnum';
 
 export default {
   name: 'globalHeader',
@@ -94,10 +82,17 @@ export default {
       routes,
     };
   },
+  setup() {
+    const store = useStore();
+    return {
+      store,
+    };
+  },
   computed: {
-    store() {
-      return store;
+    ACCESS_ENUM() {
+      return ACCESS_ENUM;
     },
+    // 过滤菜单，提升渲染效率
     visibleRoutes() {
       return routes.filter((item) => {
         const { loginUser } = this.$store.state.user;
@@ -105,10 +100,7 @@ export default {
           return false;
         }
         // 根据用户权限过滤菜单
-        if (!checkAccess(loginUser, item?.meta?.access)) {
-          return false;
-        }
-        return true;
+        return checkAccess(loginUser, item?.meta?.access);
       });
     },
   },
