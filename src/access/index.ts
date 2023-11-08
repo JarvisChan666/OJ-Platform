@@ -9,13 +9,14 @@ import router from '@/router';
 // @ts-ignore
 router.beforeEach(async (to, from, next: any) => {
   const { loginUser } = store.state.user;
+  alert(loginUser.userRole);
   // 如果之前没登陆过，自动登录
   if (!loginUser || !loginUser.userRole) {
     // 等待登陆成功后，执行后续代码
     await store.dispatch('user/getLoginUser');
   }
   const needAccess = (to.meta?.access as string) ?? ACCESS_ENUM.NOT_LOGIN;
-  // 跳转的页面必须要登陆
+  // 跳转的页面必须要登陆2
   if (needAccess !== ACCESS_ENUM.NOT_LOGIN) {
     // 若没登陆，跳转到登录页
     if (!loginUser || !loginUser.userRole) {

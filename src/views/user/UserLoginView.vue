@@ -21,7 +21,8 @@
         <a-button html-type="submit">Login</a-button>
       </a-form-item>
       <p>
-        还没有账号？<router-link to="/user/register">点击注册</router-link>
+        还没有账号？
+        <router-link to="/user/register">点击注册</router-link>
       </p>
     </a-form>
   </div>

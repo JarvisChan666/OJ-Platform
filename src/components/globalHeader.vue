@@ -1,20 +1,29 @@
 <template>
   <a-row :wrap="false" align="center" class="globalHeader" style="margin-bottom: 16px">
     <a-col flex="200px">
-      <a-menu-item key="0" :style="{ padding: 0, marginRight: '38px' }" disabled>
-        <div
-          :style="{
-            width: '100px',
-            height: '100px',
-            background: 'var(--color-fill-3)',
-            cursor: 'text',
-            position: 'relative',
-            borderRadius: '50%',
-          }"
-        >
-          <img alt="logo" class="logo" src="../assets/logo.jpg" />
-        </div>
-      </a-menu-item>
+      <!--      TODO 下拉菜单遮挡头像修复-->
+      <a-space size="large" style="margin-top: 20px" @submit="handleSubmit">
+        <a-dropdown @select="handleSelect">
+          <a-button :style="{ padding: 0, marginRight: '38px' }">
+            <div
+              :style="{
+                width: '100px',
+                height: '100px',
+                background: 'var(--color-fill-3)',
+                cursor: 'text',
+                position: 'relative',
+                borderRadius: '50%',
+              }"
+            >
+              <img alt="logo" class="logo" src="../assets/logo.jpg" />
+            </div>
+          </a-button>
+          <template #content>
+            <a-doption>个人信息</a-doption>
+            <a-doption @click="handleSelect">退出登录</a-doption>
+          </template>
+        </a-dropdown>
+      </a-space>
     </a-col>
     <a-col flex="auto">
       <router-link
@@ -74,6 +83,10 @@ import { routes } from '@/router/routes';
 import checkAccess from '@/access/checkAccess';
 import { useStore } from 'vuex';
 import ACCESS_ENUM from '@/access/accessEnum';
+import router from '@/router';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import message from '@arco-design/web-vue/es/message';
+import store from '@/store';
 
 export default {
   name: 'globalHeader',
@@ -82,7 +95,23 @@ export default {
       routes,
     };
   },
+  methods: {
+    async handleSelect() {
+      // const res = await UserControllerService.userLogoutUsingPost();
+      // 登录成功，跳转到主页
+      if (store.state.user.loginUser) {
+        await store.dispatch('user/userLogout');
+        await router.push({
+          path: '/user/login',
+          replace: true,
+        });
+      } else {
+        message.error('退出失败');
+      }
+    },
+  },
   setup() {
+    // eslint-disable-next-line no-shadow
     const store = useStore();
     return {
       store,

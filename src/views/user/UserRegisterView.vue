@@ -7,19 +7,21 @@
       @submit="handleSubmit"
     >
       <a-form-item
-          :rules="[
-              { required: true, message: '账号不为空'},
-              {minLength: 4, message: '账号长度不小于4'},
-          ]"
-          label="账号">
+        :rules="[
+          { required: true, message: '账号不为空' },
+          { minLength: 4, message: '账号长度不小于4' },
+        ]"
+        label="账号"
+      >
         <a-input v-model="form.userAccount" placeholder="please enter account" />
       </a-form-item>
       <a-form-item
-          :rules="[
-              { required: true, message: '密码不为空'},
-              {minLength: 8, message: '密码长度不低于8'},
-          ]"
-          label="密码">
+        :rules="[
+          { required: true, message: '密码不为空' },
+          { minLength: 8, message: '密码长度不低于8' },
+        ]"
+        label="密码"
+      >
         <a-input-password
           v-model="form.userPassword"
           allow-clear
@@ -28,11 +30,12 @@
         />
       </a-form-item>
       <a-form-item
-          :rules="[
-              { required: true, message: '密码不为空'},
-              {minLength: 8, message: '密码长度不低于8'},
-          ]"
-          label="请再次输入密码">
+        :rules="[
+          { required: true, message: '密码不为空' },
+          { minLength: 8, message: '密码长度不低于8' },
+        ]"
+        label="请再次输入密码"
+      >
         <a-input-password
           v-model="form.checkPassword"
           allow-clear
@@ -73,11 +76,7 @@ const store = useStore();
  * @param data
  */
 const handleSubmit = async () => {
-  if (
-    !form.userAccount
-    || !form.userPassword
-    || !form.checkPassword
-  ) {
+  if (!form.userAccount || !form.userPassword || !form.checkPassword) {
     return;
   }
   if (form.userAccount.length < 4 || form?.userPassword.length < 6) {
